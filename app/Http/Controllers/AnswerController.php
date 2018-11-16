@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Answer;
+use App\Answer;
 
 class AnswerController extends Controller
 {
@@ -12,9 +12,9 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /*public function __construct(){
+    public function __construct(){
         $this->middleware('auth');
-    }*/
+    }
 
     public function index()
     {
@@ -48,9 +48,13 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($question, $answer)
     {
-         }
+        $answer = Answer::find($answer);
+
+        return view('answer')->with(['answer'=>$answer, 'question'=>$question]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
