@@ -12,11 +12,13 @@ class QuestionController extends Controller
     public function __contruct(){
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -27,9 +29,12 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        //
+        $question = new Question;
+        $edit = False;
+        return view('questionForm', ['question'=> $question, 'edit' => $edit]);
     }
 
     /**
@@ -38,9 +43,22 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $input = $request -> validate([
+            'body' => 'required|min:5',
+        ]  , [
+            'body.required' => 'Body is required',
+            'body.min' => 'Body must be at least 5 character',
+        ]);
+        $input = request()->all();
+
+        $question = new Question($input);
+        $question ->user() -> associate(Auth::user());
+        $question->save();
+
+        return redirect()->route('home')->with('message', 'IT WORKS!');
     }
 
     /**
@@ -49,6 +67,7 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show(Question $question)
     {
         return view('question') ->with('question', $question);
@@ -60,9 +79,11 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function edit(Question $question)
     {
-        //
+        $edit = TRUE;
+        return view('questionForm', ['question' => $question, 'edit' => $edit ]);
     }
 
     /**
@@ -72,9 +93,18 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
 
+    public function update(Request $request, Question $question)
+    {
+        $input = $request->validate([
+            'body' => 'required|min:5',
+        ], [
+            'body.required' => 'Body is required',
+            'body.min' => 'Body must be at least 5 characters',
+        ]);
+        $question->body = $request->body;
+        $question->save();
+        return redirect()->route('questions.show',['question_id' => $question->id])->with('message', 'Saved');
     }
 
     /**
@@ -83,8 +113,11 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return redirect()->route('home')->with('message', 'Deleted');
     }
+
 }
