@@ -51,6 +51,10 @@
                                             Like ({{ $answer->like->count() }})
                                         </a>
 
+                                        <a class="btn btn-default float-left" type="button" href='{{ url("/dislike/{$answer->id}") }}'>
+                                            Unlike ({{ $answer->dislike->count() }})
+                                        </a>
+
                                     </div>
                                 </div>
 
@@ -69,28 +73,4 @@
         </div>
     </div>
 
-
-    {{-- <button class="btn btn-default float-left like">
-                             <span id="count">Like ({{ $answer->like()->count() }})</span>
-                         </button>--}}
-    {{--
-                                            //<a href="{{ URL::route('likes.view') }}" class="btn btn-default"> Like ({{ $answer->like()->count() }}) </a>
-    --}}
-    {{--
-                                           This one is fine <button class="btn btn-default float-left like" type="button" data-size="ajax" onclick="window.location='{{ url("/view/'answer_id'") }}'">Like ({{ $answer->like()->count() }})</button>
-    --}}
-
-    {{--
-                                           // <button href="{{ route('answers.like') }}" type="button" class="btn btn-default">Like ({{ $answer->like()->count() }})</button>
-    --}}
-
-    {{--<a href="{{ route('like') }}" class="like"> Like ({{ $answer->like()->count() }})
-
-
-    </a>--}}
-
-    {{-- <a href="{{ action('AnswerController@like', ['question_id'=>$question->id]) }}" class='like' type='button' id='getRequest' role="button" tabindex="0">
-         Like ({{ $answer->like->count() }})
-
-     </a>--}}
 @endsection

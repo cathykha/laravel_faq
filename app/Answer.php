@@ -21,4 +21,9 @@ class Answer extends Model
         return $this->hasMany('App\Like');
     }
 
+    public function dislike(){
+        return $this->hasMany('App\Dislike');
+    }
+
+
 }

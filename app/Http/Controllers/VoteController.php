@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Question;
 use App\Like;
+use App\Dislike;
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -20,10 +22,10 @@ class VoteController extends Controller
     public function view($answer_id, $question)
     {
         $answers = Answer::where('id', '=', $answer_id)->get();
-        $likeAns = Answer::find($answer_id);
-        $likeCount = Like::where(['answer_id' => $likeAns->id])->count();
-        //$unlikeCount = Unlike::where(['answer_id' => $likeAns->id])->count();
-        return view('answers.view',['answers' => $answers, 'likeCount' => $likeCount]);
+        $ansId = Answer::find($answer_id);
+        $likeCount = Like::where(['answer_id' => $ansId->id])->count();
+        $dislikeCount = Dislike::where(['answer_id' => $ansId->id])->count();
+        return view('answers.view',['answers' => $answers, 'likeCount' => $likeCount, 'dislikeCount' => $dislikeCount]);
     }
 
     public function like($id)
@@ -43,6 +45,25 @@ class VoteController extends Controller
             return redirect()->back()->with('success', ['Liked']);
         }
     }
+
+    public function dislike($id)
+    {
+        $user = Auth::user()->id;
+        $disliked = Dislike::where(['user_id' => $user, 'answer_id' => $id])->first();
+        if (empty($disliked->user_id)) {
+            $user_id = Auth::user()->id;
+            $answer_id = $id;
+
+            $dislike = new Dislike;
+            $dislike->user_id = $user_id;
+            $dislike->answer_id = $answer_id;
+            $dislike->save();
+            return redirect()->back()->with('success', ['Disliked']);
+        } else {
+            return redirect()->back()->with('success', ['Disliked']);
+        }
+    }
+
 }
 
 

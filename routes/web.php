@@ -40,4 +40,4 @@ Route::resources([
 
 
 Route::get('/like/{id}', 'VoteController@like')->name('votes.like');
-
+Route::get('/dislike/{id}', 'VoteController@dislike')->name('votes.dislike');
