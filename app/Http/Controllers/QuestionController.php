@@ -70,6 +70,7 @@ class QuestionController extends Controller
 
     public function show(Question $question)
     {
+
         return view('question') ->with('question', $question);
     }
 
@@ -121,3 +122,5 @@ class QuestionController extends Controller
     }
 
 }
+
+

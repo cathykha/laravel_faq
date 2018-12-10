@@ -4,18 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class Like extends Model
 {
-    protected $fillable = ['body'];
-
     public function user(){
         return $this->belongsTo('App\User');
     }
 
-    public function answers(){
-        return $this->hasMany('App\Answer');
+    public function answer(){
+        return $this->belongsTo('App\Answer');
     }
 
 }
-
-
