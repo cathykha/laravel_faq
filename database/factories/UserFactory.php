@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Validation\Validator;
 use Faker\Generator as Faker;
 
 /*
@@ -15,8 +15,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        //'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'role'=>$faker->randomElement($array=array('subscriber', 'admin')),
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
     ];

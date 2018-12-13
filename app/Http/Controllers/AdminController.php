@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest:admin');
     }
 
     /**
@@ -25,11 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if(Auth::check() && Auth::user()->role == 'subscriber') {
-            $questions = $user->questions()->paginate(6);
-            return view('home')->with('questions', $questions);
-        }
-        return redirect()->intended('/dashboard');
+        return view('/dashboard');
 
     }
 }

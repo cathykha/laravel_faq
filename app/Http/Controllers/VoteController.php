@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Answer;
-use App\Question;
 use App\Like;
 use App\Dislike;
-
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -19,8 +17,10 @@ class VoteController extends Controller
         $this->middleware('auth');
     }
 
-    public function view($answer_id, $question)
+    public function view($answer_id)
     {
+        //Session::put('key', 'value');
+
         $answers = Answer::where('id', '=', $answer_id)->get();
         $ansId = Answer::find($answer_id);
         $likeCount = Like::where(['answer_id' => $ansId->id])->count();
@@ -40,9 +40,9 @@ class VoteController extends Controller
             $like->user_id = $user_id;
             $like->answer_id = $answer_id;
             $like->save();
-            return redirect()->back()->with('success', ['Liked']);
+            return redirect()->back()->with('message', 'Liked');
         } else {
-            return redirect()->back()->with('success', ['Liked']);
+            return redirect()->back()->with('message', 'Liked');
         }
     }
 
@@ -58,12 +58,11 @@ class VoteController extends Controller
             $dislike->user_id = $user_id;
             $dislike->answer_id = $answer_id;
             $dislike->save();
-            return redirect()->back()->with('success', ['Disliked']);
+            return redirect()->back()->with('message', 'Disliked');
         } else {
-            return redirect()->back()->with('success', ['Disliked']);
+            return redirect()->back()->with('message', 'Disliked');
         }
     }
-
 }
 
 

@@ -10,6 +10,10 @@ class Dislike extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function admin   (){
+        return $this->belongsTo('App\Admin');
+    }
+
     public function answer(){
         return $this->belongsTo('App\Answer');
     }

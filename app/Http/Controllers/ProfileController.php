@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Profile;
 use App\User;
 
+
+
 class ProfileController extends Controller
 {
     public function create(){
@@ -55,6 +57,7 @@ class ProfileController extends Controller
 
             'fname.required' => 'First is required',
             'lname.required' => 'Last is required',
+
         ]);
         $profile = Profile::find($profile);
         $profile->fname = $request->fname;

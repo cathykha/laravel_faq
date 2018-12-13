@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +51,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'role' => ['required'],
         ]);
     }
 
@@ -63,9 +64,29 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => $data['role'],
         ]);
     }
+
+    public function redirectTo(){
+
+
+        $role = Auth::user()->role;
+
+        switch ($role) {
+            case 'admin':
+                return '/dashboard';
+                break;
+            case 'subscriber':
+                return '/home';
+                break;
+            default:
+                return '/login';
+                break;
+        }
+    }
+
+
 }

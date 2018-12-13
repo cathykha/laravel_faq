@@ -26,15 +26,12 @@
 
             <div class="col-md-4">
                 <div class="card">
+
                     <div class="card-header">
                         <a class="btn btn-primary float-left"
                            href="{{ route('answers.create', ['question_id'=> $question->id]) }}">Answer Question
                         </a>
-                        <a class="btn btn-default float-right"
-                           href='#'> Sort
-                        </a>
                     </div>
-
 
                     <div class="card-body">
                         @forelse($question->answers as $answer)

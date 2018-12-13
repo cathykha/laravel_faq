@@ -3,6 +3,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Answer;
 use App\Question;
+use App\Like;
+use App\Http\Controllers\DB;
+
 use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
@@ -53,7 +56,7 @@ class AnswerController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($question,  $answer)
+    public function show($question, $answer)
     {
         $answer = Answer::find($answer);
         return view('answer')->with(['answer' => $answer, 'question' => $question]);
@@ -104,7 +107,7 @@ class AnswerController extends Controller
         $answer = Answer::find($answer);
         $answer->delete();
         return redirect()->route('questions.show', ['question_id' => $question])->with('message', 'Deleted');
-    }
 
+    }
 }
 

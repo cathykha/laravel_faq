@@ -12,7 +12,7 @@ class DislikesTableSeeder extends Seeder
     public function run()
     {
         $users = App\User::all();
-        for ($i = 1; $i <= 2; $i++) {
+        for ($i = 1; $i <= 3; $i++) {
             $users->each(function ($user) {
                 $answer = App\Answer::inRandomOrder()->first();
                 $unlike = factory(\App\Dislike::class)->make();

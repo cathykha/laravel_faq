@@ -13,6 +13,10 @@ class Answer extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function admin(){
+        return $this->belongsTo('App\Admin');
+    }
+
     public function question(){
         return $this->belongsTo('App\Question');
     }

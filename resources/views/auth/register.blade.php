@@ -24,6 +24,17 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right" name="role">Role</label>
+                            <div class="col-md-6">
+                                <select name = 'role' class = 'form-control' >
+                                    <option value="" disabled selected>Select your option</option>
+                                    <option value = "admin">Admin</option>
+                                    <option value = "subscriber">Subscriber</option>
+                                </select>
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
