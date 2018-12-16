@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Answer;
 use App\Question;
 use App\Like;
+use App\User;
 use App\Http\Controllers\DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -107,7 +108,6 @@ class AnswerController extends Controller
         $answer = Answer::find($answer);
         $answer->delete();
         return redirect()->route('questions.show', ['question_id' => $question])->with('message', 'Deleted');
-
     }
 }
 

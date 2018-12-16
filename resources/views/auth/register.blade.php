@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
+                {{--        <div class="form-group row">
                             <label for="role" class="col-md-4 col-form-label text-md-right" name="role">Role</label>
                             <div class="col-md-6">
                                 <select name = 'role' class = 'form-control' >
@@ -33,7 +33,7 @@
                                     <option value = "subscriber">Subscriber</option>
                                 </select>
                             </div>
-                        </div>
+                        </div>--}}
 
 
                         <div class="form-group row">

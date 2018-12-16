@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Like;
 use App\Dislike;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
 class VoteController extends Controller
 {
+
+
 
     public function __construct()
     {
@@ -40,6 +42,7 @@ class VoteController extends Controller
             $like->user_id = $user_id;
             $like->answer_id = $answer_id;
             $like->save();
+
             return redirect()->back()->with('message', 'Liked');
         } else {
             return redirect()->back()->with('message', 'Liked');
@@ -58,6 +61,7 @@ class VoteController extends Controller
             $dislike->user_id = $user_id;
             $dislike->answer_id = $answer_id;
             $dislike->save();
+
             return redirect()->back()->with('message', 'Disliked');
         } else {
             return redirect()->back()->with('message', 'Disliked');

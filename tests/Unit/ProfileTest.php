@@ -21,4 +21,6 @@ class profileTest extends TestCase
         $profile->user()->associate($user); //it helps data to connect
         $this->assertTrue($profile->save());
     }
+
+
 }

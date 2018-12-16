@@ -34,4 +34,13 @@ class UserTest extends TestCase
         $user = factory(\App\User::class)->make();
         $this->assertTrue(is_object($user->profile()->get()));
     }
+    public function testLike(){
+        $user = factory(\App\User::class)->make();
+        $this->assertTrue(is_object($user->likes()->get()));
+    }
+    public function testDislike(){
+        $user = factory(\App\User::class)->make();
+        $this->assertTrue(is_object($user->dislikes()->get()));
+    }
+
 }

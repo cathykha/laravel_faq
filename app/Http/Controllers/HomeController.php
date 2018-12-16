@@ -25,11 +25,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if(Auth::check() && Auth::user()->role == 'subscriber') {
-            $questions = $user->questions()->paginate(6);
-            return view('home')->with('questions', $questions);
+        if(Auth::check() && Auth::user()->role == 'admin') {
+            return redirect()->intended('/dashboard');
         }
-        return redirect()->intended('/dashboard');
+        $questions = $user->questions()->paginate(6);
+        return view('home')->with('questions', $questions);
+
 
     }
 }

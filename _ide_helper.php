@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.13 on 2018-11-27 14:05:12.
+ * Generated for Laravel 5.7.13 on 2018-12-13 21:33:53.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -6743,7 +6743,7 @@ namespace Illuminate\Support\Facades {
     class Notification {
         
         /**
-         * Send the given notification to the given notifiable entities.
+         * Send the given notification to the given newLike entities.
          *
          * @param \Illuminate\Support\Collection|array|mixed $notifiables
          * @param mixed $notification

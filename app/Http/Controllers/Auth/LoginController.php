@@ -42,21 +42,23 @@ class LoginController extends Controller
 
 
         $role = Auth::user()->role;
+        if ($role == 'admin')
+        {
+            return '/dashboard';
+        }
+        return '/home';
 
-        switch ($role) {
+       /* switch ($role) {
             case 'admin':
                 return '/dashboard';
                 break;
             case 'subscriber':
                 return '/home';
-                break;
-            default:
+                break;*/
+          /*  default:
                 return '/login';
-                break;
+                break;*/
         }
-    }
-
-
 
 
 }
