@@ -23,7 +23,7 @@ To run the FAQ project:
   - The answer disliked by you & number of DISLIKE INCREMENTED
   ***NOTE: each user can dislike answer once.
  
- 3RD FEATURE - ADDED ADMIN ROLE (Only work locally, not on heroku)
+ 3RD FEATURE - ADDED ADMIN ROLE (Only work locally)
   - Login by using admin email from factory (role must be 'admin' in the DB table)
   - PW: 'secret'
   - Once submit, admin role will direct to dashboad homepage

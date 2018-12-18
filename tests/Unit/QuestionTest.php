@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 class QuestionTest extends TestCase
 {
     /**
@@ -21,4 +20,6 @@ class QuestionTest extends TestCase
         $question->user()->associate($user);
         $this->assertTrue($question->save());
     }
+
 }
+
